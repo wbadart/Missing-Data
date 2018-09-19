@@ -7,7 +7,7 @@
 # 
 # created: **SEP 2018**
 # 
-# This notebook is an explanation of different techniques for handling missing data (particularly, large swaths of missing data). We will compare how each technique affects models' performance. I'll be using [this][SO] Stack Overflow post as an outline for the different techniques we'll explore.
+# This notebook is an exploration of different techniques for handling missing data (particularly, large swaths of missing data). We will compare how each technique affects models' performance. I'll be using [this][SO] Stack Overflow post as an outline for the different techniques we'll explore.
 # 
 # [SO]: https://stackoverflow.com/a/35684975/4025659
 
@@ -36,9 +36,7 @@ def should_i_do_it():
 
 def stomp_indexes(x):
     options = list(range(len(x)))
-    return choices(options,
-                   # See NOTE below
-                   weights=[6, 3, 1] * 10,
+    return choices(options, weights=[6, 3, 1] * 10,
                    k=randint(0, len(x)))
 
 def append_col(arr, newcol):
@@ -62,9 +60,7 @@ Xy = append_col(X, y)
 
 # ## Assessing the Damage
 # 
-# Below, I note a few summary statistics to give an idea of the distribution of missing values.
-# 
-# First, we note the proportion of values which have been squashed.
+# Below, I note a few summary statistics to give an idea of the distribution of missing values. First, we note the proportion of values which have been squashed.
 
 # In[2]:
 
@@ -85,7 +81,7 @@ plt.show()
 # 
 # Here, the `count` row shows the number of non-missing values in the column.
 
-# In[10]:
+# In[3]:
 
 
 import pandas as pd
@@ -117,7 +113,7 @@ len([x for x in X if not any(np.isnan(x))]) / len(X)
 # 
 # Since (1) affects the shape of `X`, there also a little extra handling that needs to be done for `y`:
 
-# In[11]:
+# In[5]:
 
 
 def filter_na(A):
@@ -141,13 +137,14 @@ def fill_mean(ax):
     return ax
 
 X_mean = np.copy(X)
-np.apply_along_axis(fill_mean, 0, X_mean)
+get_ipython().run_line_magic('timeit', 'np.apply_along_axis(fill_mean, 0, X_mean)')
 Xy_mean = append_col(X_mean, y)
+describe(Xy_mean)
 
 
 # ### 3. Conditional fill with column mean
 
-# In[12]:
+# In[7]:
 
 
 def fill_cond_mean(A):
@@ -160,15 +157,13 @@ def fill_cond_mean(A):
     return A
 
 Xy_cond = np.copy(Xy)
-fill_cond_mean(Xy_cond)
+get_ipython().run_line_magic('timeit', 'fill_cond_mean(Xy_cond)')
 describe(Xy_cond)
 
 
-# ### 4. Hot-decking
-
 # ### 5. KNN
 
-# In[13]:
+# In[8]:
 
 
 from functools import partial
@@ -206,16 +201,30 @@ def fill_knn(A, k=5):
     return A
 
 X_knn = np.copy(X)
-fill_knn(X_knn, int(len(X) ** .5))
+get_ipython().run_line_magic('timeit', 'fill_knn(X_knn, int(len(X) ** .5))')
 Xy_knn = append_col(X_knn, y)
 describe(Xy_knn)
+
+
+# ### 4. Hot-decking
+
+# In[9]:
+
+
+def fill_hotdeck(A):
+    return fill_knn(A, 1)
+
+X_hotdeck = np.copy(X)
+get_ipython().run_line_magic('timeit', 'fill_hotdeck(X_hotdeck)')
+Xy_hotdeck = append_col(X_hotdeck, y)
+describe(Xy_hotdeck)
 
 
 # ## Showdown
 # 
 # So which enriched dataset yields the best model? Let's find out.
 
-# In[16]:
+# In[10]:
 
 
 from sklearn.metrics import accuracy_score, f1_score
@@ -231,12 +240,14 @@ data = {
     'dropped': split_labels(Xy_dropped),
     'mean': split_labels(Xy_mean),
     'cond': split_labels(Xy_cond),
-    'knn': split_labels(Xy_knn) }
+    'knn': split_labels(Xy_knn),
+    'hotdeck': split_labels(Xy_hotdeck) }
 
 for name, (X, y) in data.items():
     print(name)
     model = DecisionTreeClassifier(max_depth=MAX_DEPTH, random_state=RANDOM_STATE)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=RANDOM_STATE)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, random_state=RANDOM_STATE)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     print('accuracy:', accuracy_score(y_test, y_pred))
