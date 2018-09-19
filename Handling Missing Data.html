@@ -11793,7 +11793,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -11817,11 +11817,19 @@ div#notebook {
                    <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>
                    <span class="n">k</span><span class="o">=</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 
+<span class="k">def</span> <span class="nf">append_col</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">newcol</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">newcol</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">arr</span><span class="p">,</span> <span class="n">newcol</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">newcol</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">should_i_do_it</span><span class="p">():</span>
         <span class="n">targets</span> <span class="o">=</span> <span class="n">stomp_indexes</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">x</span><span class="p">[</span><span class="n">targets</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">Xy</span> <span class="o">=</span> <span class="n">append_col</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11851,7 +11859,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -11863,7 +11871,7 @@ div#notebook {
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">proportions</span><span class="p">)),</span> <span class="n">proportions</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">ax</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11876,28 +11884,13 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[49]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a17b776d8&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
 <div class="prompt"></div>
 
 
 
 
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
+<div class="output_text output_subarea ">
+<pre>&lt;Figure size 640x480 with 1 Axes&gt;</pre>
 </div>
 
 </div>
@@ -11911,6 +11904,285 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Please review the above proportions and adjust <code>PROB_MISSING</code> and the <code>weights</code> keyword argument to <code>choices</code> to your preference.</p>
+<p>Here, the <code>count</code> row shows the number of non-missing values in the column.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>284.000000</td>
+      <td>378.000000</td>
+      <td>490.000000</td>
+      <td>300.000000</td>
+      <td>394.000000</td>
+      <td>500.000000</td>
+      <td>307.000000</td>
+      <td>403.000000</td>
+      <td>497.000000</td>
+      <td>305.000000</td>
+      <td>...</td>
+      <td>292.000000</td>
+      <td>391.000000</td>
+      <td>485.000000</td>
+      <td>294.000000</td>
+      <td>414.000000</td>
+      <td>496.000000</td>
+      <td>290.000000</td>
+      <td>400.000000</td>
+      <td>499.000000</td>
+      <td>569.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>13.999511</td>
+      <td>19.362910</td>
+      <td>92.684816</td>
+      <td>640.283667</td>
+      <td>0.096308</td>
+      <td>0.105046</td>
+      <td>0.091598</td>
+      <td>0.049484</td>
+      <td>0.181258</td>
+      <td>0.063617</td>
+      <td>...</td>
+      <td>25.634623</td>
+      <td>107.386957</td>
+      <td>889.244536</td>
+      <td>0.130969</td>
+      <td>0.259754</td>
+      <td>0.271677</td>
+      <td>0.114128</td>
+      <td>0.292258</td>
+      <td>0.084485</td>
+      <td>0.627417</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.548366</td>
+      <td>4.200937</td>
+      <td>25.110112</td>
+      <td>329.493834</td>
+      <td>0.014474</td>
+      <td>0.053688</td>
+      <td>0.079407</td>
+      <td>0.038586</td>
+      <td>0.027250</td>
+      <td>0.007578</td>
+      <td>...</td>
+      <td>6.355213</td>
+      <td>33.923330</td>
+      <td>586.330346</td>
+      <td>0.022498</td>
+      <td>0.160580</td>
+      <td>0.207228</td>
+      <td>0.065040</td>
+      <td>0.064015</td>
+      <td>0.018390</td>
+      <td>0.483918</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>6.981000</td>
+      <td>9.710000</td>
+      <td>43.790000</td>
+      <td>178.800000</td>
+      <td>0.052630</td>
+      <td>0.019380</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.116700</td>
+      <td>0.050240</td>
+      <td>...</td>
+      <td>12.490000</td>
+      <td>50.410000</td>
+      <td>223.600000</td>
+      <td>0.071170</td>
+      <td>0.027290</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.156500</td>
+      <td>0.055040</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>11.600000</td>
+      <td>16.497500</td>
+      <td>75.225000</td>
+      <td>422.825000</td>
+      <td>0.086002</td>
+      <td>0.065402</td>
+      <td>0.029805</td>
+      <td>0.020820</td>
+      <td>0.161900</td>
+      <td>0.058710</td>
+      <td>...</td>
+      <td>21.160000</td>
+      <td>83.640000</td>
+      <td>513.100000</td>
+      <td>0.116600</td>
+      <td>0.151375</td>
+      <td>0.115925</td>
+      <td>0.065510</td>
+      <td>0.251700</td>
+      <td>0.072045</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>13.255000</td>
+      <td>18.885000</td>
+      <td>86.545000</td>
+      <td>549.800000</td>
+      <td>0.096620</td>
+      <td>0.094035</td>
+      <td>0.066510</td>
+      <td>0.033500</td>
+      <td>0.179200</td>
+      <td>0.061940</td>
+      <td>...</td>
+      <td>25.180000</td>
+      <td>97.960000</td>
+      <td>688.600000</td>
+      <td>0.130100</td>
+      <td>0.220900</td>
+      <td>0.226550</td>
+      <td>0.098560</td>
+      <td>0.282600</td>
+      <td>0.080200</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>15.622500</td>
+      <td>21.870000</td>
+      <td>106.825000</td>
+      <td>751.325000</td>
+      <td>0.104900</td>
+      <td>0.130600</td>
+      <td>0.136800</td>
+      <td>0.074490</td>
+      <td>0.195600</td>
+      <td>0.067390</td>
+      <td>...</td>
+      <td>29.902500</td>
+      <td>127.750000</td>
+      <td>1088.000000</td>
+      <td>0.143475</td>
+      <td>0.339200</td>
+      <td>0.381400</td>
+      <td>0.160500</td>
+      <td>0.318925</td>
+      <td>0.092320</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>27.220000</td>
+      <td>39.280000</td>
+      <td>188.500000</td>
+      <td>2010.000000</td>
+      <td>0.163400</td>
+      <td>0.345400</td>
+      <td>0.363500</td>
+      <td>0.201200</td>
+      <td>0.304000</td>
+      <td>0.095750</td>
+      <td>...</td>
+      <td>47.160000</td>
+      <td>229.300000</td>
+      <td>4254.000000</td>
+      <td>0.222600</td>
+      <td>1.058000</td>
+      <td>1.252000</td>
+      <td>0.286700</td>
+      <td>0.663800</td>
+      <td>0.207500</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 31 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Below is the proportion of data objects with no missing values at all:</p>
 
 </div>
@@ -11918,7 +12190,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -11934,13 +12206,214 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>0.14411247803163443</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dealing-with-it">Dealing with it<a class="anchor-link" href="#Dealing-with-it">&#182;</a></h2><p>The five strategies I'm going to try are:</p>
+<ol>
+<li><em>Drop rows with missing data:</em> it's exactly what it sounds like</li>
+<li><em>Mean/ mode:</em> fill missing cells with the mean (if we had categorical attributes, mode) of the present values of the column</li>
+<li><em>Conditional mean/mode:</em> same as (2) but only take the mean of rows which share your label</li>
+<li><em>Hot-decking:</em> use a distance metric to find the closest row which has a value in your missing column, and use that</li>
+<li><em>KNN:</em> same as hot-deck but <em>K</em> &gt; 1.</li>
+</ol>
+<h3 id="1.-Drop-rows-with-missing-values">1. Drop rows with missing values<a class="anchor-link" href="#1.-Drop-rows-with-missing-values">&#182;</a></h3><p>Since (1) affects the shape of <code>X</code>, there also a little extra handling that needs to be done for <code>y</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">filter_na</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
+    <span class="k">return</span> <span class="n">combined</span>
+
+<span class="n">Xy_dropped</span> <span class="o">=</span> <span class="n">filter_na</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The rest of the strategies don't change <code>y</code>, but some need to consider it.</p>
+<h3 id="2.-Fill-with-column-mean">2. Fill with column mean<a class="anchor-link" href="#2.-Fill-with-column-mean">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fill_mean</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ax</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ax</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="n">X_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">fill_mean</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">X_mean</span><span class="p">)</span>
+<span class="n">Xy_mean</span> <span class="o">=</span> <span class="n">append_col</span><span class="p">(</span><span class="n">X_mean</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Conditional-fill-with-column-mean">3. Conditional fill with column mean<a class="anchor-link" href="#3.-Conditional-fill-with-column-mean">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fill_cond_mean</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="n">same_class</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">A</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">same_class</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">A</span>
+
+<span class="n">Xy_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
+<span class="n">fill_cond_mean</span><span class="p">(</span><span class="n">Xy_cond</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-Hot-decking">4. Hot-decking<a class="anchor-link" href="#4.-Hot-decking">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-KNN">5. KNN<a class="anchor-link" href="#5.-KNN">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">heapq</span> <span class="k">import</span> <span class="n">nsmallest</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="k">import</span> <span class="n">euclidean</span>
+
+<span class="k">def</span> <span class="nf">euclidean_with_nan</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">k</span><span class="p">]]</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">skip</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># Don&#39;t consider pairs with mismatching missing vals</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">nsmallest</span><span class="p">(</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">euclidean_with_nan</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">fill_knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                <span class="n">neighbors</span> <span class="o">=</span> <span class="n">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">neighbors</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">knn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[array([      nan, 1.777e+01, 1.329e+02,       nan,       nan, 7.864e-02,
+              nan, 7.017e-02,       nan,       nan, 5.435e-01, 7.339e-01,
+              nan, 7.408e+01,       nan, 1.308e-02,       nan, 1.340e-02,
+        1.389e-02,       nan, 2.499e+01, 2.341e+01,       nan, 1.956e+03,
+        1.238e-01, 1.866e-01, 2.416e-01,       nan,       nan, 8.902e-02]),
+ array([1.799e+01, 1.038e+01, 1.228e+02, 1.001e+03, 1.184e-01, 2.776e-01,
+        3.001e-01, 1.471e-01, 2.419e-01, 7.871e-02, 1.095e+00, 9.053e-01,
+        8.589e+00, 1.534e+02, 6.399e-03, 4.904e-02, 5.373e-02, 1.587e-02,
+        3.003e-02, 6.193e-03, 2.538e+01, 1.733e+01, 1.846e+02, 2.019e+03,
+        1.622e-01, 6.656e-01, 7.119e-01, 2.654e-01, 4.601e-01, 1.189e-01]),
+ array([1.969e+01, 2.125e+01, 1.300e+02, 1.203e+03, 1.096e-01, 1.599e-01,
+        1.974e-01, 1.279e-01, 2.069e-01, 5.999e-02, 7.456e-01, 7.869e-01,
+        4.585e+00, 9.403e+01, 6.150e-03, 4.006e-02, 3.832e-02, 2.058e-02,
+        2.250e-02, 4.571e-03, 2.357e+01, 2.553e+01, 1.525e+02, 1.709e+03,
+        1.444e-01, 4.245e-01, 4.504e-01, 2.430e-01, 3.613e-01, 8.758e-02]),
+ array([      nan, 2.038e+01, 7.758e+01, 3.861e+02, 1.425e-01, 2.839e-01,
+        2.414e-01,       nan, 2.597e-01,       nan,       nan, 1.156e+00,
+        3.445e+00, 2.723e+01, 9.110e-03, 7.458e-02, 5.661e-02, 1.867e-02,
+        5.963e-02, 9.208e-03, 1.491e+01, 2.650e+01, 9.887e+01, 5.677e+02,
+        2.098e-01, 8.663e-01, 6.869e-01, 2.575e-01, 6.638e-01, 1.730e-01]),
+ array([      nan,       nan, 1.351e+02,       nan,       nan, 1.328e-01,
+        1.980e-01,       nan, 1.809e-01, 5.883e-02, 7.572e-01, 7.813e-01,
+              nan,       nan,       nan,       nan,       nan,       nan,
+              nan, 5.115e-03,       nan, 1.667e+01,       nan, 1.575e+03,
+        1.374e-01,       nan, 4.000e-01, 1.625e-01, 2.364e-01, 7.678e-02])]</pre>
 </div>
 
 </div>
