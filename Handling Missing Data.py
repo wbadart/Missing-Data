@@ -206,6 +206,8 @@ Xy_knn = append_col(X_knn, y)
 describe(Xy_knn)
 
 
+# **DISCLAIMER:** This knn-filling implementation is super quick and dirty. I didn't normalize anything, and the code itself is anything but pretty. Please re-implement if you use this in practice
+
 # ### 4. Hot-decking
 
 # In[9]:
