@@ -11911,11 +11911,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11928,7 +11931,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -12240,7 +12243,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">filter_na</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
@@ -12249,9 +12252,266 @@ div#notebook {
     <span class="k">return</span> <span class="n">combined</span>
 
 <span class="n">Xy_dropped</span> <span class="o">=</span> <span class="n">filter_na</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">Xy_dropped</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>...</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+      <td>82.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>14.447646</td>
+      <td>19.555366</td>
+      <td>94.414390</td>
+      <td>679.569512</td>
+      <td>0.098719</td>
+      <td>0.116694</td>
+      <td>0.105048</td>
+      <td>0.056295</td>
+      <td>0.187705</td>
+      <td>0.064219</td>
+      <td>...</td>
+      <td>26.212439</td>
+      <td>111.067317</td>
+      <td>929.229268</td>
+      <td>0.135705</td>
+      <td>0.290301</td>
+      <td>0.321272</td>
+      <td>0.128930</td>
+      <td>0.296994</td>
+      <td>0.087926</td>
+      <td>0.585366</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.439532</td>
+      <td>4.812382</td>
+      <td>23.558927</td>
+      <td>337.433993</td>
+      <td>0.015431</td>
+      <td>0.053048</td>
+      <td>0.080211</td>
+      <td>0.038647</td>
+      <td>0.024726</td>
+      <td>0.007584</td>
+      <td>...</td>
+      <td>6.626186</td>
+      <td>33.771724</td>
+      <td>580.762833</td>
+      <td>0.023949</td>
+      <td>0.160663</td>
+      <td>0.217179</td>
+      <td>0.062592</td>
+      <td>0.053157</td>
+      <td>0.020013</td>
+      <td>0.495691</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>8.219000</td>
+      <td>10.380000</td>
+      <td>53.270000</td>
+      <td>203.900000</td>
+      <td>0.066130</td>
+      <td>0.035150</td>
+      <td>0.001546</td>
+      <td>0.005495</td>
+      <td>0.134900</td>
+      <td>0.052550</td>
+      <td>...</td>
+      <td>12.490000</td>
+      <td>58.080000</td>
+      <td>249.800000</td>
+      <td>0.087740</td>
+      <td>0.054450</td>
+      <td>0.007732</td>
+      <td>0.023810</td>
+      <td>0.178300</td>
+      <td>0.056950</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>12.077500</td>
+      <td>16.397500</td>
+      <td>77.490000</td>
+      <td>447.775000</td>
+      <td>0.087505</td>
+      <td>0.076260</td>
+      <td>0.041278</td>
+      <td>0.024890</td>
+      <td>0.170425</td>
+      <td>0.059018</td>
+      <td>...</td>
+      <td>21.740000</td>
+      <td>84.207500</td>
+      <td>524.350000</td>
+      <td>0.119600</td>
+      <td>0.171350</td>
+      <td>0.148025</td>
+      <td>0.080557</td>
+      <td>0.265650</td>
+      <td>0.073472</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>13.855000</td>
+      <td>18.725000</td>
+      <td>90.375000</td>
+      <td>593.250000</td>
+      <td>0.097455</td>
+      <td>0.107050</td>
+      <td>0.083310</td>
+      <td>0.044355</td>
+      <td>0.187950</td>
+      <td>0.062930</td>
+      <td>...</td>
+      <td>24.895000</td>
+      <td>105.200000</td>
+      <td>736.400000</td>
+      <td>0.136600</td>
+      <td>0.251250</td>
+      <td>0.312900</td>
+      <td>0.109550</td>
+      <td>0.290600</td>
+      <td>0.084930</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>16.697500</td>
+      <td>22.430000</td>
+      <td>108.700000</td>
+      <td>863.575000</td>
+      <td>0.106575</td>
+      <td>0.151025</td>
+      <td>0.165175</td>
+      <td>0.087213</td>
+      <td>0.201950</td>
+      <td>0.067065</td>
+      <td>...</td>
+      <td>31.112500</td>
+      <td>129.625000</td>
+      <td>1209.250000</td>
+      <td>0.148175</td>
+      <td>0.383625</td>
+      <td>0.460150</td>
+      <td>0.182650</td>
+      <td>0.320900</td>
+      <td>0.099158</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>25.730000</td>
+      <td>39.280000</td>
+      <td>174.200000</td>
+      <td>2010.000000</td>
+      <td>0.139800</td>
+      <td>0.277600</td>
+      <td>0.336800</td>
+      <td>0.191300</td>
+      <td>0.241900</td>
+      <td>0.084500</td>
+      <td>...</td>
+      <td>44.870000</td>
+      <td>229.300000</td>
+      <td>3234.000000</td>
+      <td>0.222600</td>
+      <td>0.791700</td>
+      <td>1.170000</td>
+      <td>0.275600</td>
+      <td>0.460100</td>
+      <td>0.148600</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 31 columns</p>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12267,7 +12527,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fill_mean</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
@@ -12294,7 +12554,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fill_cond_mean</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
@@ -12302,14 +12562,272 @@ div#notebook {
         <span class="n">same_class</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">A</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
         <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-                <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">same_class</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">same_class</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">col</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">A</span>
 
 <span class="n">Xy_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
 <span class="n">fill_cond_mean</span><span class="p">(</span><span class="n">Xy_cond</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">Xy_cond</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>...</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>14.014917</td>
+      <td>19.370562</td>
+      <td>92.570461</td>
+      <td>643.146693</td>
+      <td>0.096302</td>
+      <td>0.104952</td>
+      <td>0.089845</td>
+      <td>0.048586</td>
+      <td>0.181228</td>
+      <td>0.063634</td>
+      <td>...</td>
+      <td>25.742782</td>
+      <td>107.056690</td>
+      <td>890.530307</td>
+      <td>0.131475</td>
+      <td>0.260767</td>
+      <td>0.273264</td>
+      <td>0.115233</td>
+      <td>0.292538</td>
+      <td>0.084433</td>
+      <td>0.627417</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.110506</td>
+      <td>3.557774</td>
+      <td>24.320549</td>
+      <td>288.552174</td>
+      <td>0.012412</td>
+      <td>0.051541</td>
+      <td>0.069532</td>
+      <td>0.036142</td>
+      <td>0.025651</td>
+      <td>0.005547</td>
+      <td>...</td>
+      <td>4.915499</td>
+      <td>31.843346</td>
+      <td>566.034653</td>
+      <td>0.017508</td>
+      <td>0.144919</td>
+      <td>0.199742</td>
+      <td>0.058615</td>
+      <td>0.055607</td>
+      <td>0.017345</td>
+      <td>0.483918</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>6.981000</td>
+      <td>9.710000</td>
+      <td>43.790000</td>
+      <td>178.800000</td>
+      <td>0.052630</td>
+      <td>0.019380</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.116700</td>
+      <td>0.050240</td>
+      <td>...</td>
+      <td>12.490000</td>
+      <td>50.410000</td>
+      <td>223.600000</td>
+      <td>0.071170</td>
+      <td>0.027290</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.156500</td>
+      <td>0.055040</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>12.011514</td>
+      <td>17.680000</td>
+      <td>76.850000</td>
+      <td>462.861053</td>
+      <td>0.090560</td>
+      <td>0.068290</td>
+      <td>0.046427</td>
+      <td>0.025515</td>
+      <td>0.163800</td>
+      <td>0.061330</td>
+      <td>...</td>
+      <td>23.712011</td>
+      <td>86.316955</td>
+      <td>531.200000</td>
+      <td>0.124132</td>
+      <td>0.175100</td>
+      <td>0.129500</td>
+      <td>0.076086</td>
+      <td>0.266000</td>
+      <td>0.073430</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>12.340000</td>
+      <td>18.320000</td>
+      <td>85.260000</td>
+      <td>496.600000</td>
+      <td>0.094010</td>
+      <td>0.090090</td>
+      <td>0.046427</td>
+      <td>0.029250</td>
+      <td>0.177900</td>
+      <td>0.063867</td>
+      <td>...</td>
+      <td>23.712011</td>
+      <td>93.630000</td>
+      <td>672.400000</td>
+      <td>0.125600</td>
+      <td>0.205700</td>
+      <td>0.221000</td>
+      <td>0.082350</td>
+      <td>0.277000</td>
+      <td>0.079777</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>17.388571</td>
+      <td>21.539929</td>
+      <td>109.700000</td>
+      <td>946.740909</td>
+      <td>0.103367</td>
+      <td>0.131800</td>
+      <td>0.162959</td>
+      <td>0.083400</td>
+      <td>0.193500</td>
+      <td>0.063867</td>
+      <td>...</td>
+      <td>29.162524</td>
+      <td>136.100000</td>
+      <td>1210.000000</td>
+      <td>0.143840</td>
+      <td>0.373500</td>
+      <td>0.397600</td>
+      <td>0.181156</td>
+      <td>0.327069</td>
+      <td>0.092274</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>27.220000</td>
+      <td>39.280000</td>
+      <td>188.500000</td>
+      <td>2010.000000</td>
+      <td>0.163400</td>
+      <td>0.345400</td>
+      <td>0.363500</td>
+      <td>0.201200</td>
+      <td>0.304000</td>
+      <td>0.095750</td>
+      <td>...</td>
+      <td>47.160000</td>
+      <td>229.300000</td>
+      <td>4254.000000</td>
+      <td>0.222600</td>
+      <td>1.058000</td>
+      <td>1.252000</td>
+      <td>0.286700</td>
+      <td>0.663800</td>
+      <td>0.207500</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 31 columns</p>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12332,45 +12850,47 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">partial</span>
 <span class="kn">from</span> <span class="nn">heapq</span> <span class="k">import</span> <span class="n">nsmallest</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="k">import</span> <span class="n">euclidean</span>
 
-<span class="k">def</span> <span class="nf">euclidean_with_nan</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">k</span><span class="p">]]</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">skip</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="c1"># Don&#39;t consider pairs with mismatching missing vals</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">skip_by_index</span><span class="p">(</span><span class="n">target_idx</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">[[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">target_idx</span><span class="p">]]</span>
 
-<span class="k">def</span> <span class="nf">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">nsmallest</span><span class="p">(</span>
-        <span class="n">k</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">euclidean_with_nan</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">euc_with_missing</span><span class="p">(</span><span class="n">missing_idx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the euclidean distance between x and y. This will</span>
+<span class="sd">    get called when x is missing its value at missing_idx. If</span>
+<span class="sd">    y is also missing this value, it is disqualified. Also, y</span>
+<span class="sd">    must have a value for all of x&#39;s non-missing values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_nan</span><span class="p">,</span> <span class="n">y_nan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_nan</span><span class="p">[</span><span class="n">missing_idx</span><span class="p">]</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="n">x_nonan</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">x_nonan</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">])</span>
+    
+<span class="k">def</span> <span class="nf">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nsmallest</span><span class="p">(</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">euc_with_missing</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
 
 <span class="k">def</span> <span class="nf">fill_knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-                <span class="n">neighbors</span> <span class="o">=</span> <span class="n">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-                <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">neighbors</span><span class="p">[:,</span> <span class="n">j</span><span class="p">])</span>
-</pre></div>
+                <span class="n">neighbors</span> <span class="o">=</span> <span class="n">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">neighbors</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+                <span class="k">assert</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">A</span>
 
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">knn</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">X_knn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">fill_knn</span><span class="p">(</span><span class="n">X_knn</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="o">.</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">Xy_knn</span> <span class="o">=</span> <span class="n">append_col</span><span class="p">(</span><span class="n">X_knn</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">Xy_knn</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12383,39 +12903,329 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[32]:</div>
+<div class="prompt output_prompt">Out[13]:</div>
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>[array([      nan, 1.777e+01, 1.329e+02,       nan,       nan, 7.864e-02,
-              nan, 7.017e-02,       nan,       nan, 5.435e-01, 7.339e-01,
-              nan, 7.408e+01,       nan, 1.308e-02,       nan, 1.340e-02,
-        1.389e-02,       nan, 2.499e+01, 2.341e+01,       nan, 1.956e+03,
-        1.238e-01, 1.866e-01, 2.416e-01,       nan,       nan, 8.902e-02]),
- array([1.799e+01, 1.038e+01, 1.228e+02, 1.001e+03, 1.184e-01, 2.776e-01,
-        3.001e-01, 1.471e-01, 2.419e-01, 7.871e-02, 1.095e+00, 9.053e-01,
-        8.589e+00, 1.534e+02, 6.399e-03, 4.904e-02, 5.373e-02, 1.587e-02,
-        3.003e-02, 6.193e-03, 2.538e+01, 1.733e+01, 1.846e+02, 2.019e+03,
-        1.622e-01, 6.656e-01, 7.119e-01, 2.654e-01, 4.601e-01, 1.189e-01]),
- array([1.969e+01, 2.125e+01, 1.300e+02, 1.203e+03, 1.096e-01, 1.599e-01,
-        1.974e-01, 1.279e-01, 2.069e-01, 5.999e-02, 7.456e-01, 7.869e-01,
-        4.585e+00, 9.403e+01, 6.150e-03, 4.006e-02, 3.832e-02, 2.058e-02,
-        2.250e-02, 4.571e-03, 2.357e+01, 2.553e+01, 1.525e+02, 1.709e+03,
-        1.444e-01, 4.245e-01, 4.504e-01, 2.430e-01, 3.613e-01, 8.758e-02]),
- array([      nan, 2.038e+01, 7.758e+01, 3.861e+02, 1.425e-01, 2.839e-01,
-        2.414e-01,       nan, 2.597e-01,       nan,       nan, 1.156e+00,
-        3.445e+00, 2.723e+01, 9.110e-03, 7.458e-02, 5.661e-02, 1.867e-02,
-        5.963e-02, 9.208e-03, 1.491e+01, 2.650e+01, 9.887e+01, 5.677e+02,
-        2.098e-01, 8.663e-01, 6.869e-01, 2.575e-01, 6.638e-01, 1.730e-01]),
- array([      nan,       nan, 1.351e+02,       nan,       nan, 1.328e-01,
-        1.980e-01,       nan, 1.809e-01, 5.883e-02, 7.572e-01, 7.813e-01,
-              nan,       nan,       nan,       nan,       nan,       nan,
-              nan, 5.115e-03,       nan, 1.667e+01,       nan, 1.575e+03,
-        1.374e-01,       nan, 4.000e-01, 1.625e-01, 2.364e-01, 7.678e-02])]</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>...</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+      <td>569.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>14.025612</td>
+      <td>19.295983</td>
+      <td>91.988199</td>
+      <td>644.016876</td>
+      <td>0.096349</td>
+      <td>0.105056</td>
+      <td>0.091449</td>
+      <td>0.049030</td>
+      <td>0.181327</td>
+      <td>0.063672</td>
+      <td>...</td>
+      <td>25.545723</td>
+      <td>107.141888</td>
+      <td>881.061508</td>
+      <td>0.131842</td>
+      <td>0.260891</td>
+      <td>0.271581</td>
+      <td>0.118323</td>
+      <td>0.293924</td>
+      <td>0.084538</td>
+      <td>0.627417</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.303903</td>
+      <td>3.569145</td>
+      <td>24.399331</td>
+      <td>315.838071</td>
+      <td>0.012316</td>
+      <td>0.051325</td>
+      <td>0.067895</td>
+      <td>0.036089</td>
+      <td>0.025713</td>
+      <td>0.005929</td>
+      <td>...</td>
+      <td>4.818194</td>
+      <td>32.500492</td>
+      <td>567.960024</td>
+      <td>0.016714</td>
+      <td>0.144072</td>
+      <td>0.198343</td>
+      <td>0.057286</td>
+      <td>0.055396</td>
+      <td>0.017347</td>
+      <td>0.483918</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>6.981000</td>
+      <td>9.710000</td>
+      <td>43.790000</td>
+      <td>178.800000</td>
+      <td>0.052630</td>
+      <td>0.019380</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.116700</td>
+      <td>0.050240</td>
+      <td>...</td>
+      <td>12.490000</td>
+      <td>50.410000</td>
+      <td>223.600000</td>
+      <td>0.071170</td>
+      <td>0.027290</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.156500</td>
+      <td>0.055040</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>11.850000</td>
+      <td>17.150000</td>
+      <td>75.308654</td>
+      <td>430.151339</td>
+      <td>0.089680</td>
+      <td>0.068150</td>
+      <td>0.043920</td>
+      <td>0.022822</td>
+      <td>0.163800</td>
+      <td>0.061050</td>
+      <td>...</td>
+      <td>22.814865</td>
+      <td>84.530000</td>
+      <td>515.900000</td>
+      <td>0.125282</td>
+      <td>0.167800</td>
+      <td>0.127500</td>
+      <td>0.077837</td>
+      <td>0.265340</td>
+      <td>0.073430</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>13.394767</td>
+      <td>18.831496</td>
+      <td>86.340000</td>
+      <td>553.345277</td>
+      <td>0.096136</td>
+      <td>0.094620</td>
+      <td>0.069500</td>
+      <td>0.036106</td>
+      <td>0.179800</td>
+      <td>0.062721</td>
+      <td>...</td>
+      <td>25.160000</td>
+      <td>98.370000</td>
+      <td>688.170906</td>
+      <td>0.131427</td>
+      <td>0.225600</td>
+      <td>0.226000</td>
+      <td>0.100431</td>
+      <td>0.286300</td>
+      <td>0.081160</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>15.610000</td>
+      <td>21.410000</td>
+      <td>104.100000</td>
+      <td>781.000000</td>
+      <td>0.102400</td>
+      <td>0.130300</td>
+      <td>0.130700</td>
+      <td>0.073400</td>
+      <td>0.194500</td>
+      <td>0.065010</td>
+      <td>...</td>
+      <td>27.990000</td>
+      <td>125.400000</td>
+      <td>1084.000000</td>
+      <td>0.139078</td>
+      <td>0.337100</td>
+      <td>0.382900</td>
+      <td>0.162300</td>
+      <td>0.318700</td>
+      <td>0.091850</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>27.220000</td>
+      <td>39.280000</td>
+      <td>188.500000</td>
+      <td>2010.000000</td>
+      <td>0.163400</td>
+      <td>0.345400</td>
+      <td>0.363500</td>
+      <td>0.201200</td>
+      <td>0.304000</td>
+      <td>0.095750</td>
+      <td>...</td>
+      <td>47.160000</td>
+      <td>229.300000</td>
+      <td>4254.000000</td>
+      <td>0.222600</td>
+      <td>1.058000</td>
+      <td>1.252000</td>
+      <td>0.286700</td>
+      <td>0.663800</td>
+      <td>0.207500</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 31 columns</p>
+</div>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Showdown">Showdown<a class="anchor-link" href="#Showdown">&#182;</a></h2><p>So which enriched dataset yields the best model? Let's find out.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="n">MAX_DEPTH</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="k">def</span> <span class="nf">split_labels</span><span class="p">(</span><span class="n">Xy</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Xy</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Xy</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;dropped&#39;</span><span class="p">:</span> <span class="n">split_labels</span><span class="p">(</span><span class="n">Xy_dropped</span><span class="p">),</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">split_labels</span><span class="p">(</span><span class="n">Xy_mean</span><span class="p">),</span>
+    <span class="s1">&#39;cond&#39;</span><span class="p">:</span> <span class="n">split_labels</span><span class="p">(</span><span class="n">Xy_cond</span><span class="p">),</span>
+    <span class="s1">&#39;knn&#39;</span><span class="p">:</span> <span class="n">split_labels</span><span class="p">(</span><span class="n">Xy_knn</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;accuracy:&#39;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f1-score:&#39;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>dropped
+accuracy: 0.9047619047619048
+f1-score: 0.9230769230769231
+
+mean
+accuracy: 0.9020979020979021
+f1-score: 0.9230769230769231
+
+cond
+accuracy: 0.972027972027972
+f1-score: 0.9784946236559139
+
+knn
+accuracy: 0.9370629370629371
+f1-score: 0.9518716577540107
+
+</pre>
+</div>
 </div>
 
 </div>

@@ -85,11 +85,14 @@ plt.show()
 # 
 # Here, the `count` row shows the number of non-missing values in the column.
 
-# In[3]:
+# In[10]:
 
 
 import pandas as pd
-pd.DataFrame(Xy).describe()
+
+def describe(A):
+    return pd.DataFrame(A).describe()
+describe(Xy)
 
 
 # Below is the proportion of data objects with no missing values at all:
@@ -114,7 +117,7 @@ len([x for x in X if not any(np.isnan(x))]) / len(X)
 # 
 # Since (1) affects the shape of `X`, there also a little extra handling that needs to be done for `y`:
 
-# In[6]:
+# In[11]:
 
 
 def filter_na(A):
@@ -123,13 +126,14 @@ def filter_na(A):
     return combined
 
 Xy_dropped = filter_na(Xy)
+describe(Xy_dropped)
 
 
 # The rest of the strategies don't change `y`, but some need to consider it.
 # 
 # ### 2. Fill with column mean
 
-# In[12]:
+# In[6]:
 
 
 def fill_mean(ax):
@@ -143,7 +147,7 @@ Xy_mean = append_col(X_mean, y)
 
 # ### 3. Conditional fill with column mean
 
-# In[ ]:
+# In[12]:
 
 
 def fill_cond_mean(A):
@@ -151,47 +155,91 @@ def fill_cond_mean(A):
         same_class = A[A[:, -1] == row[-1]]
         for j, v in enumerate(row):
             if np.isnan(v):
-                row[j] = mean(same_class[:, j])
+                col = same_class[:, j]
+                row[j] = col[~np.isnan(col)].mean()
     return A
 
 Xy_cond = np.copy(Xy)
 fill_cond_mean(Xy_cond)
+describe(Xy_cond)
 
 
 # ### 4. Hot-decking
 
 # ### 5. KNN
 
-# In[30]:
+# In[13]:
 
 
 from functools import partial
 from heapq import nsmallest
 from scipy.spatial.distance import euclidean
 
-def euclidean_with_nan(j, x, y):
-    def skip(k, a):
-        return a[[i for i, _ in enumerate(a) if i != k]]
-    x, y = skip(j, x), skip(j, y)
-    # Don't consider pairs with mismatching missing vals
-    if not (np.isnan(x) == np.isnan(y)).all():
-        return float('inf')
-    return euclidean(x[~np.isnan(x)], y[~np.isnan(y)])
+def skip_by_index(target_idx, a):
+    return a[[i for i, _ in enumerate(a) if i != target_idx]]
 
-def knn(A, x, k=5, skip=None):
-    return nsmallest(
-        k, A, key=partial(euclidean_with_nan, skip, x))
+def euc_with_missing(missing_idx, x, y):
+    """
+    Compute the euclidean distance between x and y. This will
+    get called when x is missing its value at missing_idx. If
+    y is also missing this value, it is disqualified. Also, y
+    must have a value for all of x's non-missing values.
+    """
+    x_nan, y_nan = np.isnan(x), np.isnan(y)
+    if y_nan[missing_idx] or np.isnan(y[~x_nan]).any():
+        return float('inf')
+    x_nonan = x[~x_nan]
+    return euclidean(x_nonan, y[~x_nan])
+    
+def knn(A, x, skip, k=5):
+    return np.array(nsmallest(
+        k, A, key=partial(euc_with_missing, skip, x)))
 
 def fill_knn(A, k=5):
     for row in A:
         for j, v in enumerate(row):
             if np.isnan(v):
-                neighbors = knn(A, row, k, j)
-                row[j] = mean(neighbors[:, j])
+                neighbors = knn(A, row, j, k)
+                col = neighbors[:, j]
+                assert not np.isnan(col).any()
+                row[j] = col.mean()
+    return A
+
+X_knn = np.copy(X)
+fill_knn(X_knn, int(len(X) ** .5))
+Xy_knn = append_col(X_knn, y)
+describe(Xy_knn)
 
 
-# In[32]:
+# ## Showdown
+# 
+# So which enriched dataset yields the best model? Let's find out.
+
+# In[16]:
 
 
-knn(X, X[1])
+from sklearn.metrics import accuracy_score, f1_score
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+MAX_DEPTH = 12
+
+def split_labels(Xy):
+    return Xy[:, :-1], Xy[:, -1]
+
+data = {
+    'dropped': split_labels(Xy_dropped),
+    'mean': split_labels(Xy_mean),
+    'cond': split_labels(Xy_cond),
+    'knn': split_labels(Xy_knn) }
+
+for name, (X, y) in data.items():
+    print(name)
+    model = DecisionTreeClassifier(max_depth=MAX_DEPTH, random_state=RANDOM_STATE)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=RANDOM_STATE)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    print('accuracy:', accuracy_score(y_test, y_pred))
+    print('f1-score:', f1_score(y_test, y_pred))
+    print()
 
