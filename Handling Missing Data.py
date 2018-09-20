@@ -170,9 +170,6 @@ from functools import partial
 from heapq import nsmallest
 from scipy.spatial.distance import euclidean
 
-def skip_by_index(target_idx, a):
-    return a[[i for i, _ in enumerate(a) if i != target_idx]]
-
 def euc_with_missing(missing_idx, x, y):
     """
     Compute the euclidean distance between x and y. This will
@@ -183,8 +180,7 @@ def euc_with_missing(missing_idx, x, y):
     x_nan, y_nan = np.isnan(x), np.isnan(y)
     if y_nan[missing_idx] or np.isnan(y[~x_nan]).any():
         return float('inf')
-    x_nonan = x[~x_nan]
-    return euclidean(x_nonan, y[~x_nan])
+    return euclidean(x[~x_nan], y[~x_nan])
     
 def knn(A, x, skip, k=5):
     return np.array(nsmallest(

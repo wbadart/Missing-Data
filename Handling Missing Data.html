@@ -12553,7 +12553,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>597 µs ± 50.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>496 µs ± 7.87 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -12852,7 +12852,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>29.2 ms ± 869 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>29.5 ms ± 1.39 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
@@ -13127,9 +13127,6 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">heapq</span> <span class="k">import</span> <span class="n">nsmallest</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="k">import</span> <span class="n">euclidean</span>
 
-<span class="k">def</span> <span class="nf">skip_by_index</span><span class="p">(</span><span class="n">target_idx</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">a</span><span class="p">[[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">target_idx</span><span class="p">]]</span>
-
 <span class="k">def</span> <span class="nf">euc_with_missing</span><span class="p">(</span><span class="n">missing_idx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the euclidean distance between x and y. This will</span>
@@ -13140,8 +13137,7 @@ div#notebook {
     <span class="n">x_nan</span><span class="p">,</span> <span class="n">y_nan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">y_nan</span><span class="p">[</span><span class="n">missing_idx</span><span class="p">]</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
-    <span class="n">x_nonan</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">x_nonan</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">euclidean</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">x_nan</span><span class="p">])</span>
     
 <span class="k">def</span> <span class="nf">knn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nsmallest</span><span class="p">(</span>
@@ -13177,7 +13173,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>19.7 ms ± 514 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<pre>19.5 ms ± 85.5 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre>
 </div>
 </div>
@@ -13480,7 +13476,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>18.8 ms ± 201 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<pre>19.8 ms ± 177 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre>
 </div>
 </div>
