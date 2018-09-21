@@ -17,8 +17,10 @@
 # 
 # [dataset]: http://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html#sklearn.datasets.load_breast_cancer
 
-# In[13]:
+# In[1]:
 
+
+get_ipython().run_line_magic('matplotlib', 'inline')
 
 import numpy as np
 
@@ -62,7 +64,7 @@ Xy = append_col(X, y)
 # 
 # Below, I note a few summary statistics to give an idea of the distribution of missing values. First, we note the proportion of values which have been squashed.
 
-# In[14]:
+# In[2]:
 
 
 import matplotlib.pyplot as plt
